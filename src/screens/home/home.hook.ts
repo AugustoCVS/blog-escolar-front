@@ -1,16 +1,12 @@
-import { saveTokensOnStorage } from "../../utils/auth"
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 export const useHome = () => {
-
-  const handleSaveUserToken = () => {
-    const token = 'mockedToken'
-    saveTokensOnStorage(token)
-  }
+  const user = useSelector((state: RootState) => state.user);
 
   return {
-    actions: {
-      handleSaveUserToken
-    }
+    states: {
+      user
+    },
   }
-
 }

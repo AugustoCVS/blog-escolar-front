@@ -8,13 +8,13 @@ import {
 
 export const AuthService = {
   register: async (user: RegisterRequestProps) => {
-    const res = await api.post("/users/register", user);
+    const res = await api.post("/user/register", user);
 
     return res.data;
   },
 
   login: async ({ email, password }: LoginRequestProps) => {
-    const res = await api.post<LoginResponseProps>("/users/login", {
+    const res = await api.post<LoginResponseProps>("/user/login", {
       email,
       password,
     });

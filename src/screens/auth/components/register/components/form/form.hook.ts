@@ -40,10 +40,14 @@ export const useRegisterForm = ({ handleCloseRegister }: FormProps) => {
   });
 
   const onFormSubmit = (data: RegisterRequestProps) => {
+
+    const isAdmin = data.email.split('.')[0] === 'prof';
+
     const updatedData = {
       ...data,
-      isAdmin: true
+      isAdmin: isAdmin
     }
+
     handleRegister.mutate(updatedData);
   };
 

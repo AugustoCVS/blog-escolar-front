@@ -1,6 +1,6 @@
 import { Controller } from "react-hook-form";
 import { SelectControllerProps } from "./select-controller.types";
-import { Select } from "../Select/select.component";
+import { Select } from "../select/select.component";
 
 export const SelectController: React.FC<SelectControllerProps> = ({
   control,

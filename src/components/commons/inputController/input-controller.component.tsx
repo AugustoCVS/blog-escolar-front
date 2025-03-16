@@ -1,5 +1,5 @@
 import { Controller } from "react-hook-form";
-import { Input } from "../Input/input.component";
+import { Input } from "../input/input.component";
 import { InputControllerProps } from "./input-controller.types";
 
 export const InputController: React.FC<InputControllerProps> = ({

@@ -1,4 +1,4 @@
-import { Header } from "./components/Header/header.component"
+import { Header } from "./components/header/header.component"
 import { ElementRoutes } from "./routes"
 import { useLocation } from 'react-router-dom'
 

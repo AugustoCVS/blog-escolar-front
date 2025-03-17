@@ -51,8 +51,9 @@ export const Post: React.FC = () => {
         <div className="mt-16">
           <textarea
             className="w-full h-96 p-4 border border-gray-100 rounded-md shadow-gray-300 shadow-md"
-            disabled={!states.user.isAdmin && states.edit}
+            disabled={!states.edit}
             value={states.post.content}
+            onChange={() => {}}
           />
         </div>
 

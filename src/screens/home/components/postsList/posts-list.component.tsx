@@ -15,7 +15,7 @@ export const PostsList: React.FC<PostsListsProps> = ({ post, handleNavigateToPos
           {format(new Date(post.createdAt), 'dd/MM/yyyy')}
         </p>
       </div>
-      <p className="text-sm text-gray-500">{post.content}</p>
+      <p className="text-sm text-gray-500">{post.content.substring(0, 120)}...</p>
 
       <div className="flex justify-end">
         <p className="text-xs text-gray-400">{post.author.name}</p>

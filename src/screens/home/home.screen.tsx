@@ -12,8 +12,9 @@ export const Home: React.FC = () => {
     if(states.loading) {
       return (
         <div className='w-3/4'>
-         {[...Array(5)].map(() => 
+         {[...Array(5)].map((_, index) => 
            <SkeletonComponent 
+            key={index}
             height={90} 
             width='100%'  
             baseColor='#ececec'

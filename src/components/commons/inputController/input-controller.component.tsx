@@ -34,7 +34,7 @@ export const InputController: React.FC<InputControllerProps> = ({
       />
 
       <div
-        className="absolute right-0 top-6 px-4 border-none bg-transparent cursor-pointer"
+        className="absolute right-0 top-4 px-4 border-none bg-transparent cursor-pointer"
         onClick={onClick}
       >
         {children}

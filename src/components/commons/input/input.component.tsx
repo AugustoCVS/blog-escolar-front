@@ -14,7 +14,7 @@ export const Input: React.FC<InputProps> = ({
 
   const inputStyle = isSecondInput
     ? "text-gray-300 bg-gray-900 p-4"
-    : "text-gray-800 bg-white p-6 border";
+    : "text-gray-800 bg-white p-4 border";
   const hasError = errorMessage ? "border-red-500" : "border-gray-300";
 
   return (

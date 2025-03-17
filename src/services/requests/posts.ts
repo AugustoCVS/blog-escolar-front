@@ -4,7 +4,7 @@ import { PostProps } from "../interfaces/posts";
 
 export const PostsService = {
   getPosts: async ({ page = 1, limit = 10 }: PaginationRequestProps): Promise<PostProps[]> => {
-    const res = await api.get(`{/posts/list?$page=${page}&limit=${limit}`);
+    const res = await api.get(`/posts/list?$page=${page}&limit=${limit}`);
 
     return res.data
   },
@@ -16,7 +16,7 @@ export const PostsService = {
   },
 
   getPostsBySearch: async (search: string): Promise<PostProps[]> => {
-    const res = await api.get(`/posts/search?searchQuery${search}`);
+    const res = await api.get(`/posts/search?searchQuery=${search}`);
 
     return res.data
   },

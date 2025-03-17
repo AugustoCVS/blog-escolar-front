@@ -4,6 +4,7 @@ import { SearchComponent } from "./components/search/search.component"
 import { useHome } from "./home.hook"
 import { Button } from "@/components/commons/button/button.component"
 import { SkeletonComponent } from "@/components/commons/skeleton/skeleton.component"
+import { EmptyScreen } from "@/components/commons/emptyScreen/empty-Screen.component"
 
 export const Home: React.FC = () => {
   const { states, actions } = useHome()
@@ -24,6 +25,10 @@ export const Home: React.FC = () => {
         )}
         </div>
       )
+    }
+
+    if(states.posts?.length === 0 || !states.posts) {
+      return <EmptyScreen message="Nenhum post encontrado" />
     }
 
     return states.posts?.map((post) => (

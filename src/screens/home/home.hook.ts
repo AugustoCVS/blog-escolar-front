@@ -37,7 +37,9 @@ export const useHome = () => {
     queryFn: async () => {
       return await PostsService.getPosts({limit: paginationProps.limit, page: paginationProps.page});
     },
+    retry: 2,
     enabled: debouncedSearch === '',
+    refetchOnWindowFocus: false,
   });
 
   const searchPosts = useQuery({
@@ -45,7 +47,9 @@ export const useHome = () => {
     queryFn: async () => {
       return await PostsService.getPostsBySearch(debouncedSearch);
     },
+    retry: 2,
     enabled: debouncedSearch !== '',
+    refetchOnWindowFocus: false,
   });
 
   const handleLoadMore = () => {
@@ -60,7 +64,7 @@ export const useHome = () => {
   }
 
   const posts = debouncedSearch ? searchPosts.data : getPosts.data || [];
-  const loading = searchPosts.isLoading || getPosts.isLoading;
+  const loading = searchPosts.isLoading || getPosts.isFetching
 
   return {
     states: {

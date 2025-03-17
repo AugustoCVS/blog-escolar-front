@@ -9,9 +9,14 @@ export const useHeader = () => {
     removeTokensOnStorage()
   }
 
+  const handleGoToHome = () => {
+    navigate('/home')
+  }
+
   return {
     actions: {
-      handleLogout
+      handleLogout,
+      handleGoToHome
     }
   }
 }

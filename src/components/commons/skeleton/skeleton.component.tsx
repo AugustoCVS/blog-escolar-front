@@ -17,7 +17,6 @@ export const SkeletonComponent: React.FC<SkeletonProps> = ({
       width={width}
       borderRadius={borderRadius}
       enableAnimation
-      containerClassName="flex-1"
     />
   );
 };

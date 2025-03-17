@@ -47,11 +47,11 @@ export const Home: React.FC = () => {
         </div>
         <div className="flex justify-end mt-4 w-3/4">
           <Button 
-            className="flex items-center justify-center bg-gray-500 p-4 rounded-md text-white gap-1"
+            className="flex items-center justify-center bg-gray-500 p-2 text-sm rounded-md text-white gap-1"
             onClick={actions.handleLoadMore}
           >
             Carregar mais
-            <ChevronDown size={20} />
+            <ChevronDown size={16} />
           </Button>
         </div>
       </div>

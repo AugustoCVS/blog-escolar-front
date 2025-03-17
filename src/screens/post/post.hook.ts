@@ -1,10 +1,17 @@
 import { useQuery } from "@tanstack/react-query"
 import { useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { RootState } from "@/redux/store"
 
 import { PostsService } from "@/services/requests/posts"
+import { useState } from "react"
 
 export const usePost = ({postId}: {postId: string}) => {
   const navigate = useNavigate()
+
+  const user = useSelector((state: RootState) => state.user);
+
+  const [edit, setEdit] = useState<boolean>(false)
 
   const handleGoBackToHome = () => {
     navigate('/home')
@@ -20,13 +27,25 @@ export const usePost = ({postId}: {postId: string}) => {
   const post = getPostById.data
   const isLoading = getPostById.isLoading
 
+  const handleEdit = () => {
+    setEdit(!edit)
+  }
+
+  const handleDelete = () => {
+    navigate('/home')
+  }
+
   return {
     states: {
+      user,
       post,
-      isLoading
+      isLoading,
+      edit
     },
     actions: {
-      handleGoBackToHome
+      handleGoBackToHome,
+      handleEdit,
+      handleDelete
     }
   }
 }

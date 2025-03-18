@@ -9,5 +9,6 @@ export type InputControllerProps = {
   isSecondInput?: boolean;
   children?: React.ReactNode;
   defaultValue?: string | number | Date;
+  disabled?: boolean;
   onClick?: () => void;
 };

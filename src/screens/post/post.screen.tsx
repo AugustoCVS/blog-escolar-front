@@ -23,6 +23,7 @@ export const Post: React.FC = () => {
     values: {
       title: states.post?.title || '',
       content: states.post?.content || '',
+      author: states.user.name
     }
   })
 
@@ -104,8 +105,18 @@ export const Post: React.FC = () => {
             </div>
           )}
 
-          {states.post?.author && (
-            <p className="text-xs text-gray-400">Autor: {states.post.author.name}</p>
+          {!states.user.isAdmin ? (
+            <p className="text-xs text-gray-400">Autor: {states.post?.author.name}</p>
+          ) : (
+            <InputController
+              name="author"
+              control={control}
+              errorMessage={errors.author?.message}
+              isInvalid={!!errors.author}
+              placeholder="Autor"
+              type="text"
+              disabled={true}
+            />
           )}
         </div>
       </div>

@@ -12,6 +12,7 @@ export const InputController: React.FC<InputControllerProps> = ({
   children,
   isSecondInput,
   defaultValue,
+  disabled = false,
   onClick,
 }) => {
   return (
@@ -29,6 +30,7 @@ export const InputController: React.FC<InputControllerProps> = ({
             errorMessage={errorMessage}
             isInvalid={isInvalid}
             isSecondInput={isSecondInput}
+            disabled={disabled}
           />
         )}
       />

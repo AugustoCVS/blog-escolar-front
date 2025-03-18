@@ -38,7 +38,12 @@ export const usePost = ({postId}: {postId: string}) => {
   }
 
   const onFormSubmit = (data: CreatePostProps) => {
-    console.log(data)
+    const postData = {
+      title: data.title,
+      content: data.content,
+    }
+
+    console.log(postData)
   };
 
   return {

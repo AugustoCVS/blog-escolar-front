@@ -45,21 +45,35 @@ export const Home: React.FC = () => {
       <div className="flex items-center justify-between font-bold h-[10vh] p-4 mt-4">
         <h2>Bem vindo, { states.user.name } </h2>
 
-        <SearchComponent value={states.search} setValue={actions.handleDebounceSearch} />
+        <div 
+          className="flex items-center justify-center gap-4"
+        >
+          <SearchComponent value={states.search} setValue={actions.handleDebounceSearch} />
+          {states.user.isAdmin && (
+            <Button
+              onClick={actions.handleNavigateToCreatePost}
+              className="bg-gray-500 text-white p-4 rounded-md"
+            >
+              Criar post
+            </Button>
+          )}
+        </div>
       </div>
       <div className="flex flex-col items-center mt-8 w-full">
         <div className="flex flex-col items-center w-full">
           {renderPostList()}
         </div>
-        <div className="flex justify-end mt-4 w-3/4">
-          <Button 
-            className="flex items-center justify-center bg-gray-500 p-2 text-sm rounded-md text-white gap-1"
-            onClick={actions.handleLoadMore}
-          >
-            Carregar mais
-            <ChevronDown size={16} />
-          </Button>
-        </div>
+          {states.posts?.length !== 0 || states.posts && (
+            <div className="flex justify-end mt-4 w-3/4">
+              <Button 
+                className="flex items-center justify-center bg-gray-500 p-2 text-sm rounded-md text-white gap-1"
+                onClick={actions.handleLoadMore}
+              >
+                Carregar mais
+                <ChevronDown size={16} />
+              </Button>
+            </div>
+          )}
       </div>
     </div>
   )

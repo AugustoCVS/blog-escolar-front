@@ -8,3 +8,8 @@ export type PostProps ={
   updatedAt: Date;
   author: UserResponseProps;
 }
+
+export type CreatePostProps = {
+  title: string;
+  content: string;
+}

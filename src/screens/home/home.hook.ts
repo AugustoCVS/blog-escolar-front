@@ -63,6 +63,10 @@ export const useHome = () => {
     navigate(`/post/${id}`);
   }
 
+  const handleNavigateToCreatePost = () => {
+    navigate('/post/criar');
+  }
+
   const posts = debouncedSearch ? searchPosts.data : getPosts.data || [];
   const loading = searchPosts.isLoading || getPosts.isFetching
 
@@ -77,7 +81,8 @@ export const useHome = () => {
     actions: {
       handleDebounceSearch,
       handleLoadMore,
-      handleNavigateToPost
+      handleNavigateToPost,
+      handleNavigateToCreatePost,
     },
   };
 };

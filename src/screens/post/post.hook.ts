@@ -5,6 +5,7 @@ import { RootState } from "@/redux/store"
 
 import { PostsService } from "@/services/requests/posts"
 import { useState } from "react"
+import { CreatePostProps } from "@/services/interfaces/posts"
 
 export const usePost = ({postId}: {postId: string}) => {
   const navigate = useNavigate()
@@ -21,7 +22,8 @@ export const usePost = ({postId}: {postId: string}) => {
     queryKey: ['post', postId],
     queryFn: async () => {
       return await PostsService.getPostsById(postId)
-    }
+    },
+    enabled: postId !== 'criar'
   })
 
   const post = getPostById.data
@@ -35,6 +37,10 @@ export const usePost = ({postId}: {postId: string}) => {
     navigate('/home')
   }
 
+  const onFormSubmit = (data: CreatePostProps) => {
+    console.log(data)
+  };
+
   return {
     states: {
       user,
@@ -45,7 +51,8 @@ export const usePost = ({postId}: {postId: string}) => {
     actions: {
       handleGoBackToHome,
       handleEdit,
-      handleDelete
+      handleDelete,
+      onFormSubmit,
     }
   }
 }

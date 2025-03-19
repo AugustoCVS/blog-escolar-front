@@ -22,10 +22,9 @@ export const PostsService = {
   },
 
   getPostsByAuthor: async (
-      { page = 1, limit = 10 }: PaginationRequestProps,
-      authorId: string
+      { page = 1, limit = 10, authorId }: { page: number, limit: number, authorId: string }
     ): Promise<PostProps[]> => {
-    const res = await api.get(`{/posts/list?$page=${page}&limit=${limit}&userId=${authorId}`);
+    const res = await api.get(`/posts/author?$page=${page}&limit=${limit}&userId=${authorId}`);
 
     return res.data
   },

@@ -1,10 +1,11 @@
 import { ChevronDown } from "lucide-react"
-import { PostsList } from "./components/postsList/posts-list.component"
+
 import { SearchComponent } from "./components/search/search.component"
 import { useHome } from "./home.hook"
 import { Button } from "@/components/commons/button/button.component"
 import { SkeletonComponent } from "@/components/commons/skeleton/skeleton.component"
 import { EmptyScreen } from "@/components/commons/emptyScreen/empty-Screen.component"
+import { PostsList } from "@/components/commons/postsList/posts-list.component"
 
 export const Home: React.FC = () => {
   const { states, actions } = useHome()

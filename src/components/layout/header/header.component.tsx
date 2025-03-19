@@ -1,9 +1,9 @@
-import { LogOut } from 'lucide-react';
+import { LogOut, ShieldUser } from 'lucide-react';
 
 import { useHeader } from "./header.hook"
 
 export const Header: React.FC = () => {
-  const { actions } = useHeader()
+  const { states, actions } = useHeader()
 
   return (
     <header className='flex items-center justify-between px-8 bg-gray-800 text-white p-4 h-[10vh]'>
@@ -14,10 +14,21 @@ export const Header: React.FC = () => {
         Blog Escolar Fiap
       </h1>
       <div
-        className='flex items-center justify-center p-2 rounded cursor-pointer hover:bg-gray-700'
-        onClick={actions.handleLogout}
+        className='flex items-center justify-center p-2 gap-4 rounded'
       >
-        <LogOut size={24} />
+        {states.user.isAdmin && (
+          <ShieldUser
+            size={40}
+            onClick={actions.handleGoToPerfil}
+            className='cursor-pointer hover:bg-gray-700 p-2 rounded'
+          />
+        )}
+
+        <LogOut 
+          size={40}
+          onClick={actions.handleLogout}
+          className='cursor-pointer hover:bg-gray-700 p-2 rounded'
+        />
       </div>
     </header>
   )

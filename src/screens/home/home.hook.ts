@@ -33,7 +33,7 @@ export const useHome = () => {
   }, [search]);
 
   const getPosts = useQuery({
-    queryKey: ["posts", paginationProps],
+    queryKey: ["getPosts", paginationProps],
     queryFn: async () => {
       return await PostsService.getPosts({limit: paginationProps.limit, page: paginationProps.page});
     },
@@ -67,7 +67,7 @@ export const useHome = () => {
     navigate('/post/criar');
   }
 
-  const posts = debouncedSearch ? searchPosts.data : getPosts.data || [];
+  const posts = debouncedSearch ? searchPosts.data : ( getPosts.data || []);
   const loading = searchPosts.isLoading || getPosts.isFetching
 
   return {

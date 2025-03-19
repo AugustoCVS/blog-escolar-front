@@ -63,7 +63,7 @@ export const Home: React.FC = () => {
         <div className="flex flex-col items-center w-full">
           {renderPostList()}
         </div>
-          {states.posts?.length !== 0 || states.posts && (
+          {states.posts?.length !== 0 && states.posts && (
             <div className="flex justify-end mt-4 w-3/4">
               <Button 
                 className="flex items-center justify-center bg-gray-500 p-2 text-sm rounded-md text-white gap-1"

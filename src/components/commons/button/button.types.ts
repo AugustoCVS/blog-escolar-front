@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export type ButtonProps = {
   children: React.ReactNode;
-  onClick?: () => void;
+  onClick?: (e?: any) => void;
   loading?: boolean;
   className?: string;
   type?: "button" | "submit" 

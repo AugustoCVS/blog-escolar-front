@@ -13,3 +13,10 @@ export type CreatePostProps = {
   title: string;
   content: string;
 }
+
+export type UpdatePostProps = {
+  userId: string;
+  postId: string;
+  title: string;
+  content: string;
+}

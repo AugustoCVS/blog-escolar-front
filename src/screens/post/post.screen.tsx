@@ -18,7 +18,7 @@ export const Post: React.FC = () => {
 
   const { states, actions } = usePost({ postId })
 
-  const {control, handleSubmit, formState: { errors }} = useForm<formProps>({
+  const {control, handleSubmit, formState: { errors }, resetField} = useForm<formProps>({
     resolver: yupResolver(postSchema),
     values: {
       title: states.post?.title || '',
@@ -47,7 +47,7 @@ export const Post: React.FC = () => {
               size={24}
               onClick={actions.handleGoBackToHome}
             />
-            {states.user.isAdmin || states.edit ? (
+            {states.user.isAdmin && (states.edit || postId === 'criar') ? (
               <InputController 
                 name="title"
                 control={control}
@@ -55,6 +55,7 @@ export const Post: React.FC = () => {
                 isInvalid={!!errors.title}
                 placeholder="Título"
                 type="text"
+                disabled={!states.edit && !states.user.isAdmin && postId !== 'criar'}
               />
             ) : (
               <h1 className="font-bold text-lg">{states.post?.title}</h1>
@@ -75,29 +76,54 @@ export const Post: React.FC = () => {
             errorMessage={errors.content?.message}
             isInvalid={!!errors.content}
             placeholder="Conteúdo"
-            disabled={!states.edit && !states.user.isAdmin && postId !== 'criar'}
+            disabled={!states.edit && postId !== 'criar'}
           />
         </div>
 
         <div className={`flex items-center ${states.user.isAdmin ? 'justify-between' : 'justify-end'} mt-8 gap-4`}>
 
-          {states.user.isAdmin && (
+          {(states.user.isAdmin && !states.isLoading) && (
             <div
               className="flex items-center gap-4"
             >
-              <Button
-                type={states.edit || postId === 'criar' ? 'submit' : 'button'}
-                className="w-20 p-2 bg-green-300 rounded-md text-white"
-                onClick={actions.handleEdit}
-              >
-                {states.edit || postId === 'criar' ? 'Salvar' : 'Editar'}
-              </Button>
+              {!states.edit && postId !== 'criar' ? (
+                <Button
+                  type="button"
+                  className="w-20 p-2 bg-green-300 rounded-md text-white"
+                  onClick={(event) => { event.preventDefault(); actions.handleStartEdit(); }}
+                >
+                  Editar
+                </Button>
+              ) : (
+                <Button
+                  type="submit"
+                  className="w-20 p-2 bg-green-300 rounded-md text-white"
+                  loading={states.isLoadingCreatePost || states.isLoadingUpdatePost}
+                >
+                  Salvar
+                </Button>
+              )}
 
-              {postId !== 'criar' && (
+              {states.edit && (
+                <Button
+                  type="button"
+                  className="w-20 p-2 bg-red-300 rounded-md text-white"
+                  onClick={() => {
+                    resetField('title')
+                    resetField('content')
+                    actions.cancelEdit()
+                  }}
+                >
+                  Cancelar
+                </Button>
+              )}
+
+              {(postId !== 'criar' && !states.edit) && (
                 <Button
                   type="button"
                   className="w-20 p-2 bg-red-300 rounded-md text-white"
                   onClick={actions.handleDelete}
+                  loading={states.isLoadingUpdatePost}
                 >
                   Excluir
                 </Button>
@@ -105,7 +131,7 @@ export const Post: React.FC = () => {
             </div>
           )}
 
-          {!states.user.isAdmin ? (
+          {!states.edit && postId !== 'criar' ? (
             <p className="text-xs text-gray-400">Autor: {states.post?.author.name}</p>
           ) : (
             <InputController

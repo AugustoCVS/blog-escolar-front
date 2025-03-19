@@ -7,9 +7,12 @@ import { LoginRequestProps } from "@/services/interfaces/auth";
 import { MessageUtils } from "@/utils/messages";
 import { saveTokensOnStorage } from "@/utils/auth";
 import { ERROR_MESSAGE, SUCCESS_MESSAGE } from "./form.constants";
+import { useDispatch } from "react-redux";
+import { setUser } from "@/redux/slices/User/user.slice";
 
 export const useLoginForm = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const handleShowPassword = (): void => {
@@ -41,6 +44,7 @@ export const useLoginForm = () => {
       });
       saveTokensOnStorage(res.id);
       navigateToHome();
+      dispatch(setUser(res));
     },
   });
 

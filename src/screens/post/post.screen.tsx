@@ -4,13 +4,13 @@ import { LoadingComponent } from "./components/loading/loading.component"
 import { EmptyScreen } from "@/components/commons/emptyScreen/empty-Screen.component"
 import { format } from "date-fns"
 import { ChevronLeft } from "lucide-react"
-import { Button } from "@/components/commons/button/button.component"
 import { useForm } from "react-hook-form"
 import { formProps } from "./post.types"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { postSchema } from "./post.constants"
 import { InputController } from "@/components/commons/inputController/input-controller.component"
 import { TexteAreaController } from "@/components/commons/textAreaController/text-area-controller.component"
+import { ButtonSection } from "./components/buttonSection/button-section.component"
 
 export const Post: React.FC = () => {
   const { id } = useParams()
@@ -83,52 +83,16 @@ export const Post: React.FC = () => {
         <div className={`flex items-center ${states.user.isAdmin ? 'justify-between' : 'justify-end'} mt-8 gap-4`}>
 
           {(states.user.isAdmin && !states.isLoading) && (
-            <div
-              className="flex items-center gap-4"
-            >
-              {!states.edit && postId !== 'criar' ? (
-                <Button
-                  type="button"
-                  className="w-20 p-2 bg-green-300 rounded-md text-white"
-                  onClick={(event) => { event.preventDefault(); actions.handleStartEdit(); }}
-                >
-                  Editar
-                </Button>
-              ) : (
-                <Button
-                  type="submit"
-                  className="w-20 p-2 bg-green-300 rounded-md text-white"
-                  loading={states.isLoadingCreatePost || states.isLoadingUpdatePost}
-                >
-                  Salvar
-                </Button>
-              )}
-
-              {states.edit && (
-                <Button
-                  type="button"
-                  className="w-20 p-2 bg-red-300 rounded-md text-white"
-                  onClick={() => {
-                    resetField('title')
-                    resetField('content')
-                    actions.cancelEdit()
-                  }}
-                >
-                  Cancelar
-                </Button>
-              )}
-
-              {(postId !== 'criar' && !states.edit) && (
-                <Button
-                  type="button"
-                  className="w-20 p-2 bg-red-300 rounded-md text-white"
-                  onClick={actions.handleDelete}
-                  loading={states.isLoadingUpdatePost}
-                >
-                  Excluir
-                </Button>
-              )}
-            </div>
+            <ButtonSection
+              isEdit={states.edit}
+              postId={postId}
+              isLoading={states.isLoading}
+              isDeleting={states.isLoadingDeletePost}
+              resetField={resetField}
+              cancelEdit={actions.cancelEdit}
+              handleStartEdit={actions.handleStartEdit}
+              handleDeletePost={actions.handleDelete}
+            />
           )}
 
           {!states.edit && postId !== 'criar' ? (

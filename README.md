@@ -58,7 +58,7 @@ O Blog Escolar é uma plataforma web desenvolvida para facilitar a comunicação
    npm install
    ```
 
-3. Configure as variáveis de ambiente:
+3. Configure as variáveis de ambiente, crie um .env:
 
    ```bash
     VITE_API_URL="http://localhost:3001"
@@ -71,9 +71,7 @@ O Blog Escolar é uma plataforma web desenvolvida para facilitar a comunicação
    ```
 
 ### Configuração com Docker
-1. Configure as variáveis de ambiente:
-  
-  Crie um arquivo .env com suas configurações,
+1. Configure as variáveis de ambiente, crie um .env:
 
    ```bash
     VITE_API_URL="http://localhost:3001"

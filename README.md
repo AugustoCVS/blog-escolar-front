@@ -59,8 +59,6 @@ O Blog Escolar é uma plataforma web desenvolvida para facilitar a comunicação
    ```
 
 3. Configure as variáveis de ambiente:
-  
-  Crie um arquivo .env com essas configurações
 
    ```bash
     VITE_API_URL="http://localhost:3001"
